@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import Landing from "./Landing";
+// import Landing from "./Landing";
 import reportWebVitals from "./reportWebVitals";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 
@@ -18,8 +18,8 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ThirdwebProvider activeChain={activeChain}>
-      {/* <App /> */}
-      <Landing />
+      <App  />
+      {/* <Landing /> */}
     </ThirdwebProvider>
   </React.StrictMode>
 );

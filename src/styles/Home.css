@@ -74,9 +74,7 @@
   flex-wrap: wrap;
   max-width: 1440px;
 }
-.card-display {
-  
-}
+
 .card-display {
   background: #151515;
 border: 1px solid rgba(94, 94, 94, 0.1);
@@ -88,6 +86,7 @@ border-radius: 8px;
   color: inherit;
   text-decoration: none;
   transition: color 0.15s ease, border-color 0.15s ease;
+  min-height: 170px;
 }
 
 .card:hover,
@@ -119,6 +118,7 @@ padding-bottom: 15px;
   padding: 0;
   text-align: center;
   margin-bottom: 1rem;
+  padding-top: 0.8rem;
 }
 
 .card p {
@@ -177,15 +177,22 @@ padding-bottom: 15px;
   color: rgba(255, 255, 255, 0.7);
 }
 .btn-staking {
-  font-family: "niveau-grotesk", sans-serif;
-  font-weight: 400;
+  font-family: "niveau-grotesk", sans-serif !important;
+  font-weight: 400 !important;
   font-style: normal;
-  text-transform: uppercase;
-  padding: 16px 20px;
-  background: linear-gradient(97.51deg, #25282B 5.12%, #242525 90.93%);
-border: 1px solid #FFFFFF;
-border-radius: 0px 8px 8px 0px;
-color:#fff;
+  text-transform: uppercase !important;
+  padding: 20px 20px !important;
+  background: linear-gradient(97.51deg, #25282B 5.12%, #242525 90.93%) !important;
+  border: 1px solid #313245 !important;
+border-radius: 0px 8px 8px 0px !important;
+color:#fff !important;
+transition: color 0.15s ease, border-color 0.15s ease;
+}
+.btn-staking:hover {  
+  color:#66A9EC !important;
+  background: linear-gradient(97.51deg, #25282B 5.12%, #242525 90.93%) !important;
+border: 1px solid #66A9EC !important;
+border-radius: 0px 8px 8px 0px !important;
 }
 .labels {
   color:#66A9EC;
