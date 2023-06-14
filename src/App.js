@@ -5,6 +5,7 @@ import {
   useContractRead,
   useContractWrite,
   useTokenBalance,
+  useSigner,
   Web3Button
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
@@ -28,6 +29,7 @@ export default function App() {
   const contractAddress = "0x0777E4C556b76143349b81D86EAc8D36b7efB58E";
   const yahToken = "0x421a312D1C443faA673AE47338c0c42Fb40CdfD0";
   const address = useAddress();
+  const signer = useSigner();
   // const signer = ethers.getDefaultProvider();
   const [amountToStake, setAmountToStake] = useState(0);
   const [amountToWithdraw, setAmountToWithdraw] = useState(0);
@@ -175,15 +177,28 @@ console.log('reward token',rewardTokenAddress);
               onChange={(e) => setAmountToStake(e.target.value)} 
               placeholder="00.00" />
         
+        <Web3Button
+            className="btn-staking"
+            contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
+            action={async (contract) => {
+              await stakingToken.setAllowance(
+                contractAddress,
+                ethers.constants.MaxInt256
+              );
+              await contract.call("stake", [ethers.utils.parseUnits(amountToStake,9)]);
+            }}
+          >
+            Approve
+          </Web3Button>
+        
           <Web3Button
           theme="dark"
           className="btn-staking"
       contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
-      onSubmit={() => console.log("Staking Transaction submitted")}
       action={(contract) => {
         contract.call("stake", [ethers.utils.parseUnits(amountToStake,9)])
       }}
-      onSuccess={(result) => alert("Staking Transaction successful")}
+      // onSuccess={(result) => alert("Staking Transaction successful")}
     >
       stake
     </Web3Button>
@@ -210,7 +225,6 @@ console.log('reward token',rewardTokenAddress);
               theme="dark"
       className="btn-staking"
       contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
-      onSubmit={() => console.log("Withdraw Transaction submitted")}
       action={(contract) => {
         contract.call("withdraw", [ethers.utils.parseUnits(amountToWithdraw,9)])
       }}
@@ -222,6 +236,12 @@ console.log('reward token',rewardTokenAddress);
             </div>
         </div>
         </div>
+        <div className="row text-center">
+        <div className="col-12 col-md-6">
+          <p className="description pt-1 aqua">You will need to approve the token before you can stake.</p>
+        </div>
+        <div className="col-12 col-md-6"></div>
+      </div>
       </div>
     
     <footer className="py-5 my-5">
