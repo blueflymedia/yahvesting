@@ -10,6 +10,7 @@ import {
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import CountdownTimer from "./CountdownTimer";
 
 import "./styles/Home.css";
 // import { stakingContractAddress } from "../src/caAddresses";
@@ -19,6 +20,15 @@ import Logo from "./images/logo-2x.png";
 // https://ipfs.thirdwebcdn.com/ipfs/
 
 export default function App() {
+  const countDownDate = new Date("Jun 26, 2023 13:02:35").getTime();
+  console.log('countdown date:',countDownDate);
+  const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
+  const SEVEN_DAYS_IN_MS = 7 * 24 * 60 * 60 * 1000;
+  const now = new Date().getTime();
+  const distance = countDownDate - now; 
+
+  // const launchDate = countDownDate - NOW_IN_MS;
+  const launchDate = now + distance;
   function decimalRound(bal, decimals) {
     if (!decimals) decimals = 2;
     return Number.parseFloat(bal).toFixed(decimals);
@@ -34,8 +44,8 @@ export default function App() {
   // const signer = ethers.getDefaultProvider();
   const [amountToStake, setAmountToStake] = useState(0);
   const [amountToWithdraw, setAmountToWithdraw] = useState(0);
-  const [amountToClaim, setAmountToClaim] = useState(0);
-  const [ethRewards, setEthRewards] = useState(0);
+  // const [amountToClaim, setAmountToClaim] = useState(0);
+  // const [ethRewards, setEthRewards] = useState(0);
 
 
   // Initialize all the contracts
@@ -154,12 +164,6 @@ export default function App() {
           </div>
           <div className="col-6 col-md-3 g-0">
           <div className="card-display">
-            <h3>ETH Rewards</h3>
-            <h4>--</h4>
-          </div>
-          </div>
-          <div className="col-6 col-md-3 g-0">
-          <div className="card-display">
             <h3>YAH Rewards</h3>
             <h4>{rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}</h4>
             <Web3Button
@@ -171,6 +175,13 @@ export default function App() {
     >
       Claim Rewards
     </Web3Button>
+          </div>
+          </div>
+          <div className="col-6 col-md-3 g-0">
+          <div className="card-display">
+            <h3>Partner Launch</h3>
+            <h4 className="aqua"><CountdownTimer targetDate={launchDate} /></h4>
+            <p>portion goes to yahvesting.eth</p>
           </div>
           </div>
         </div>
