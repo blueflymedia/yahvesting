@@ -42,22 +42,23 @@ export default function App() {
     contractAddress,
     "custom"
   );
+  // Initialize token contracts
+  const { contract: stakingToken, isLoading: isStakingTokenLoading } =
+    useContract(yahToken, "token");
+  const { contract: rewardsToken, isLoading: isRewardTokenLoading } =
+    useContract(yahToken, "token");
   // const { data, isLoading, error } = useTokenDecimals(contract);
 
   // Get contract data from staking contract
-  const { data: rewardTokenAddress } = useContractRead(staking, "rewardsToken");
-  const { data: stakingTokenAddress } = useContractRead(
-    staking,
-    "stakingToken"
-  );
-console.log('staking token:',stakingTokenAddress);
-console.log('reward token',rewardTokenAddress);
+//   const { data: rewardTokenAddress } = useContractRead(staking, "rewardsToken");
+//   const { data: stakingTokenAddress } = useContractRead(
+//     staking,
+//     "stakingToken"
+//   );
+// console.log('staking token:',stakingTokenAddress);
+// console.log('reward token',rewardTokenAddress);
 
-  // Initialize token contracts
-  const { contract: stakingToken, isLoading: isStakingTokenLoading } =
-    useContract(stakingTokenAddress, "token");
-  const { contract: rewardsToken, isLoading: isRewardTokenLoading } =
-    useContract(rewardTokenAddress, "token");
+  
 
   // Token balances
   const { 
@@ -178,6 +179,16 @@ console.log('reward token',rewardTokenAddress);
               placeholder="00.00" />
         
         <Web3Button
+        className="btn-staking"
+      contractAddress="0x421a312D1C443faA673AE47338c0c42Fb40CdfD0"
+      action={(stakingToken) => {
+        stakingToken.call("approve", [contractAddress, '7777777777000000000'])
+      }}
+    >
+      1. approve
+    </Web3Button>
+        
+        {/* <Web3Button
             className="btn-staking"
             contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
             action={async (contract) => {
@@ -189,7 +200,7 @@ console.log('reward token',rewardTokenAddress);
             }}
           >
             Approve
-          </Web3Button>
+          </Web3Button> */}
         
           <Web3Button
           theme="dark"
@@ -200,7 +211,7 @@ console.log('reward token',rewardTokenAddress);
       }}
       // onSuccess={(result) => alert("Staking Transaction successful")}
     >
-      stake
+      2. stake
     </Web3Button>
           
           {/* <input type="submit" value="Approve" className="btn-staking" />
