@@ -89,7 +89,7 @@
   color: inherit;
   text-decoration: none;
   transition: color 0.15s ease, border-color 0.15s ease;
-  min-height: 170px;
+  min-height: 200px;
 }
 @media (min-width: 768px) {
   .card-display {
@@ -214,6 +214,23 @@ padding-bottom: 15px;
   padding: 16px 20px;
   position: relative;
   color: rgba(255, 255, 255, 0.7);
+}
+.btn-claim {
+  background-color: #66A9EC;
+  font-family: "niveau-grotesk", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal;
+  text-transform: uppercase !important;
+  padding: 10px 20px !important;
+  background: linear-gradient(97.51deg, #66A9EC 5.12%, #36D1DC 90.93%) !important;
+  border: 1px solid #313245 !important;
+  border-radius: 4px !important;
+  color:#313245 !important;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  margin: 0.2rem 0.5rem;
+}
+.btn-claim:hover {
+  filter: drop-shadow(0px 0px 30px rgba(102, 169, 236, 0.63));
 }
 .btn-staking.tw-web3button.css-1fii1tk {
   font-family: "niveau-grotesk", sans-serif !important;

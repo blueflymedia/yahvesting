@@ -162,6 +162,15 @@ export default function App() {
           <div className="card-display">
             <h3>YAH Rewards</h3>
             <h4>{rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}</h4>
+            <Web3Button
+        className="btn-claim"
+      contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
+      action={(stakingToken) => {
+        stakingToken.call("claim")
+      }}
+    >
+      Claim Rewards
+    </Web3Button>
           </div>
           </div>
         </div>
