@@ -10,6 +10,7 @@ import {
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+
 import "./styles/Home.css";
 // import { stakingContractAddress } from "../src/caAddresses";
 import Logo from "./images/logo-2x.png";
@@ -154,13 +155,13 @@ export default function App() {
           <div className="col-6 col-md-3 g-0">
           <div className="card-display">
             <h3>ETH Rewards</h3>
-            <h4>-</h4>
+            <h4>--</h4>
           </div>
           </div>
           <div className="col-6 col-md-3 g-0">
           <div className="card-display">
             <h3>YAH Rewards</h3>
-            {/* {rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,9)))} */}
+            {rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}
           </div>
           </div>
         </div>
