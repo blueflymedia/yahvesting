@@ -114,19 +114,19 @@ export default function App() {
     <header>
       <div className="container">
         <div className="row pt-2">
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-center justify-content-md-end">
           <div className="connect">
           <ConnectWallet theme="dark" dropdownPosition={{ side: 'bottom', align: 'center'}} />
         </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-12 hero">
+            <div className="col-12 hero pb-2">
               <img src={Logo} className="logo" alt="You are Here" />
               <h1 className="title pt-5">
                 Stake YAH
               </h1>
-              <p className="description w-50">
+              <p className="description w-md-50">
               Stake your YAH for a period of days or weeks and receive just rewards from our labor.
               </p>
             </div>
@@ -161,14 +161,14 @@ export default function App() {
           <div className="col-6 col-md-3 g-0">
           <div className="card-display">
             <h3>YAH Rewards</h3>
-            {rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}
+            <h4>{rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}</h4>
           </div>
           </div>
         </div>
       </div>
     <div className="container pt-5 pb-5">
       <div className="row text-center">
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-md-6 pb-3 pb-md-1">
             <div className="balance-form-area">
               <h4 className="labels">Stake YAH</h4>
               {/* <h5></h5> */}
@@ -222,7 +222,7 @@ export default function App() {
               </div>
         </div>
 
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-md-6 pb-3 pb-md-1">
             <div className="balance-form-area">
               <h4 className="labels">Unstake YAH</h4>
               <input 
