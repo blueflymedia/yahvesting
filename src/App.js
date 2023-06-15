@@ -124,7 +124,7 @@ const {
   //   isLoading: isStakeInfoLoading,
   // } = useContractRead(staking, "balanceOf", address);
   // console.log('staked yah:',stakeInfo);
-  
+  // const percentageStaked = (totalStaked/7777777777)*100;
   useEffect(() => {
     setInterval(() => {
       refetchData();
@@ -164,7 +164,7 @@ const {
     <div className="container">
       <div className="row">
         <div className="col-6 col-md-3 g-0">
-        <div className="card-display">
+        <div className="card-display min-height225">
             <h3>Unstaked YAH</h3>
             <h4>
             {decimalRound(unstakedTokenBalance?.displayValue)}
@@ -173,7 +173,7 @@ const {
           </div>
           </div>
           <div className="col-6 col-md-3 g-0">
-          <div className="card-display">
+          <div className="card-display min-height225">
             <h3>Staked YAH</h3>
             <h4>{stakedTokenBalance && (decimalRound(ethers.utils.formatUnits(stakedTokenBalance,9)))}
               </h4>
@@ -181,7 +181,7 @@ const {
           </div>
           </div>
           <div className="col-6 col-md-3 g-0">
-          <div className="card-display">
+          <div className="card-display min-height225">
             <h3>YAH Rewards</h3>
             <h4>{rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}</h4>
             <Web3Button
@@ -196,7 +196,7 @@ const {
           </div>
           </div>
           <div className="col-6 col-md-3 g-0">
-          <div className="card-display">
+          <div className="card-display min-height225">
             <h3>Partner Launch</h3>
             <h4 className="aqua"><CountdownTimer targetDate={launchDate} /></h4>
             <p>portion goes to yahvesting.eth</p>
@@ -276,22 +276,32 @@ const {
           </div>
         </div>
         {/* <!-- col 2 --> */}
-        <div className="col-5 offset-1">
+        <div className="col-5 offset-1 ps-5">
           <div className="row">
             <div className="col-12 pb-3 pb-md-1">
-            <div className="card-display">
+            <div className="card-display min-height150">
               <h3>Total YAH Staked</h3>
               <h4 className="pt-4">
               {totalStaked && (decimalRound(ethers.utils.formatUnits(totalStaked,9)))}
                 </h4>
+                {/* <p>{decimalRound(ethers.utils.parseUnits(percentageStaked,9))}{"%"}</p> */}
             </div>
           </div>
           </div>
           <div className="row">
             <div className="col-12 pb-3 pb-md-1">
-            <div className="card-display">
+            <div className="card-display min-height150">
                 <h3>Current APY</h3>
                 <h4 className="pt-4">not yet available</h4>
+                {/* <h4>{APY && (decimalRound(APY,2))}%</h4> */}
+            </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 pb-3 pb-md-1">
+            <div className="card-display min-height150">
+                <h3>ETH Rewards</h3>
+                <h4 className="pt-4">stay tuned</h4>
                 {/* <h4>{APY && (decimalRound(APY,2))}%</h4> */}
             </div>
             </div>
