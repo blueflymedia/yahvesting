@@ -49,7 +49,11 @@
 .description {
   text-align: center;
 }
-
+.footnote {
+  font-size: 0.9rem;
+  color: #66A9EC;
+  text-align: left;
+}
 .connect {
   margin-bottom: 2rem;
 }

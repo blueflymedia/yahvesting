@@ -6,11 +6,13 @@ import {
   useContractWrite,
   useTokenBalance,
   useSigner,
-  Web3Button
+  Web3Button,
+  Transaction
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import CountdownTimer from "./CountdownTimer";
+// import useContractEvents from "./useContractEvents";
 
 import "./styles/Home.css";
 // import { stakingContractAddress } from "../src/caAddresses";
@@ -81,14 +83,25 @@ export default function App() {
       address
       );
 
-  const { 
-    data: stakedTokenBalance, 
-    refetch: refetchStakedTokenBalance,
-    error: stakedTokenBalanceError } = useContractRead(
-      staking, 
-      "balanceOf", 
-      ([address]),
-      );
+      // user staked token balance
+const { 
+  data: stakedTokenBalance, 
+  refetch: refetchStakedTokenBalance,
+  error: stakedTokenBalanceError } = useContractRead(
+  staking, 
+  "balanceOf", 
+  (
+    [address]
+  ),
+);
+
+const { 
+  data: totalStaked, 
+  error: stakedTokenError } = useContractRead(
+    staking, 
+    "totalSupply",
+);
+
 
   const { data: rewardsTokenBalance, refetch: refetchRewardsBalance } =
   useContractRead(staking, "rewards", [address]);
@@ -97,6 +110,11 @@ export default function App() {
     console.log('unstaked token balance:',unstakedTokenBalance);
     console.log('staked token balance:',stakedTokenBalance);
 
+  // Get APY
+//   const totalRewards = 388888888;
+// const totalStakedTokens = decimalRound(ethers.utils.parseUnits(totalStaked,9));
+// const userStakedTokens = decimalRound(ethers.utils.parseUnits(stakedTokenBalance,9));
+// const APY= userStakedTokens*(totalRewards/totalStakedTokens)* 100;
   //  const { data, isLoading, error } = useContractRead(staking, "balanceOf", [address || "0"]);
     
   // Get staking data
@@ -187,94 +205,101 @@ export default function App() {
         </div>
       </div>
     <div className="container pt-5 pb-5">
-      <div className="row text-center">
-        <div className="col-12 col-md-6 pb-3 pb-md-1">
-            <div className="balance-form-area">
-              <h4 className="labels">Stake YAH</h4>
-              {/* <h5></h5> */}
-              <input 
-              className="input-staking" 
-              type="text"
-              value={amountToStake}
-              onChange={(e) => setAmountToStake(e.target.value)} 
-              placeholder="00.00" />
-        
-        <Web3Button
-        className="btn-staking"
-      contractAddress="0x421a312D1C443faA673AE47338c0c42Fb40CdfD0"
-      action={(stakingToken) => {
-        stakingToken.call("approve", [contractAddress, '7777777777000000000'])
-      }}
-    >
-      1. approve
-    </Web3Button>
-        
-        {/* <Web3Button
-            className="btn-staking"
-            contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
-            action={async (contract) => {
-              await stakingToken.setAllowance(
-                contractAddress,
-                ethers.constants.MaxInt256
-              );
-              await contract.call("stake", [ethers.utils.parseUnits(amountToStake,9)]);
-            }}
-          >
-            Approve
-          </Web3Button> */}
-        
-          <Web3Button
-          theme="dark"
-          className="btn-staking"
-      contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
-      action={(contract) => {
-        contract.call("stake", [ethers.utils.parseUnits(amountToStake,9)])
-      }}
-      // onSuccess={(result) => alert("Staking Transaction successful")}
-    >
-      2. stake
-    </Web3Button>
+      <div className="row">
+        {/* <!-- col 1 --> */}
+        <div className="col-6">
+          <div className="row">
+            {/* Stake YAH */}
+            <div className="col-12 pb-5">
+              <div className="balance-form-area">
+                <h4 className="labels">Stake YAH</h4>
+                {/* <h5></h5> */}
+                <input 
+                className="input-staking" 
+                type="text"
+                value={amountToStake}
+                onChange={(e) => setAmountToStake(e.target.value)} 
+                placeholder="00.00" />
           
-          {/* <input type="submit" value="Approve" className="btn-staking" />
-                  <span className="hover-shape1"></span>
-                  <span className="hover-shape2"></span>
-                  <span className="hover-shape3"></span>       */}
-              </div>
-        </div>
-
-        <div className="col-12 col-md-6 pb-3 pb-md-1">
-            <div className="balance-form-area">
-              <h4 className="labels">Unstake YAH</h4>
-              <input 
-              className="input-staking" 
-              type="text"
-              value={amountToWithdraw}
-              onChange={(e) => setAmountToWithdraw(e.target.value)} 
-              placeholder="00.00" />
-              {/* <span className="max">MAX</span> */}
-              <div className="white-shape-small approve">
-              <Web3Button
-              theme="dark"
-      className="btn-staking"
-      contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
-      action={(contract) => {
-        contract.call("withdraw", [ethers.utils.parseUnits(amountToWithdraw,9)])
-      }}
-    >
-      unstake
-    </Web3Button>
-        
+          <Web3Button
+          className="btn-staking"
+        contractAddress="0x421a312D1C443faA673AE47338c0c42Fb40CdfD0"
+        action={(stakingToken) => {
+          stakingToken.call("approve", [contractAddress, '7777777777000000000'])
+        }}
+      >
+        1. approve
+      </Web3Button>
+          
+            <Web3Button
+            theme="dark"
+            className="btn-staking"
+        contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
+        action={(contract) => {
+          contract.call("stake", [ethers.utils.parseUnits(amountToStake,9)])
+        }}
+        // onSuccess={(result) => alert("Staking Transaction successful")}
+      >
+        2. stake
+      </Web3Button>
+      <p className="footnote pt-1 aqua">You will need to approve the token before you can stake.</p>
+                </div>
+            </div>
+          </div>
+          <div className="row">
+            {/* Withdraw YAH */}
+            <div className="col-12 pb-3 pb-md-1">
+              <div className="balance-form-area">
+                <h4 className="labels">Unstake YAH</h4>
+                <input 
+                className="input-staking" 
+                type="text"
+                value={amountToWithdraw}
+                onChange={(e) => setAmountToWithdraw(e.target.value)} 
+                placeholder="00.00" />
+                {/* <span className="max">MAX</span> */}
+                <div className="white-shape-small approve">
+                <Web3Button
+                theme="dark"
+        className="btn-staking"
+        contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
+        action={(contract) => {
+          contract.call("withdraw", [ethers.utils.parseUnits(amountToWithdraw,9)])
+        }}
+      >
+        unstake
+      </Web3Button>
+          
+                </div>
               </div>
             </div>
+          </div>
         </div>
+        {/* <!-- col 2 --> */}
+        <div className="col-5 offset-1">
+          <div className="row">
+            <div className="col-12 pb-3 pb-md-1">
+            <div className="card-display">
+              <h3>Total YAH Staked</h3>
+              <h4 className="pt-4">
+              {totalStaked && (decimalRound(ethers.utils.formatUnits(totalStaked,9)))}
+                </h4>
+            </div>
+          </div>
+          </div>
+          <div className="row">
+            <div className="col-12 pb-3 pb-md-1">
+            <div className="card-display">
+                <h3>Current APY</h3>
+                <h4 className="pt-4">not yet available</h4>
+                {/* <h4>{APY && (decimalRound(APY,2))}%</h4> */}
+            </div>
+            </div>
+          </div>
         </div>
-        <div className="row text-center">
-        <div className="col-12 col-md-6">
-          <p className="description pt-1 aqua">You will need to approve the token before you can stake.</p>
-        </div>
-        <div className="col-12 col-md-6"></div>
       </div>
-      </div>
+    </div>
+
     
     <footer className="py-5 my-5">
       <div className="container">
