@@ -183,7 +183,7 @@ const {
           <div className="col-6 col-md-3 g-0">
           <div className="card-display min-height225">
             <h3>YAH Rewards</h3>
-            <h4>{rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,18),6))}{" "}{"YAH"}</h4>
+            <h4>{rewardsTokenBalance && (decimalRound(ethers.utils.formatUnits(rewardsTokenBalance,9),2))}{" "}{"YAH"}</h4>
             <Web3Button
         className="btn-claim"
       contractAddress="0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
