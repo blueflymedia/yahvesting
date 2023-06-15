@@ -1,0 +1,11 @@
+Total Allocated to Stake = 388 888 888.85
+Total Staked = 1141455689
+Staked by me = 1000000
+
+const APY= totalStaked*(supply allocated to the rewards/Total amount staked)* 100
+
+100000*(388888888/1141455689)*100 = 34.08%
+
+100000*(1088888888/1141455689)*100 = 34.08%
+
+7777777777*.14 = 1088888888.38

@@ -207,7 +207,7 @@ const {
     <div className="container pt-5 pb-5">
       <div className="row">
         {/* <!-- col 1 --> */}
-        <div className="col-6">
+        <div className="col-12 col-md-6">
           <div className="row">
             {/* Stake YAH */}
             <div className="col-12 pb-5">
@@ -276,7 +276,7 @@ const {
           </div>
         </div>
         {/* <!-- col 2 --> */}
-        <div className="col-5 offset-1 ps-5">
+        <div className="col-12 col-md-5 offset-md-1 ps-md-5">
           <div className="row">
             <div className="col-12 pb-3 pb-md-1">
             <div className="card-display min-height150">
