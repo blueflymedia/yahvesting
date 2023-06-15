@@ -82,7 +82,17 @@ export default function App() {
       rewardsToken, 
       address
       );
-
+  const { 
+    data: totalSupply, 
+    error: totalSupplyError } =
+    useTokenBalance(
+      rewardsToken, 
+      "0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
+      );
+console.log('total supply:',totalSupply.displayValue);
+      // if(unstakedTokenBalance) {
+      //   setAmountToStake(unstakedTokenBalance);
+      // }
       // user staked token balance
 const { 
   data: stakedTokenBalance, 
@@ -219,7 +229,7 @@ const {
                 type="text"
                 value={amountToStake}
                 onChange={(e) => setAmountToStake(e.target.value)} 
-                placeholder="00.00" />
+                 />
           
           <Web3Button
           className="btn-staking"
@@ -278,7 +288,7 @@ const {
         {/* <!-- col 2 --> */}
         <div className="col-12 col-md-5 offset-md-1 ps-md-5">
           <div className="row">
-            <div className="col-12 pb-3 pb-md-1">
+            <div className="col-12 pb-3 pb-md-1 pe-0">
             <div className="card-display min-height150">
               <h3>Total YAH Staked</h3>
               <h4 className="pt-4">
@@ -289,16 +299,16 @@ const {
           </div>
           </div>
           <div className="row">
-            <div className="col-12 pb-3 pb-md-1">
+            <div className="col-12 pb-3 pb-md-1 pe-0">
             <div className="card-display min-height150">
                 <h3>Current APY</h3>
-                <h4 className="pt-4">not yet available</h4>
+                <h4 className="pt-4">200%</h4>
                 {/* <h4>{APY && (decimalRound(APY,2))}%</h4> */}
             </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-12 pb-3 pb-md-1">
+            <div className="col-12 pb-3 pb-md-1 pe-0">
             <div className="card-display min-height150">
                 <h3>ETH Rewards</h3>
                 <h4 className="pt-4">stay tuned</h4>
