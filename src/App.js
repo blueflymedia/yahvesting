@@ -82,14 +82,14 @@ export default function App() {
       rewardsToken, 
       address
       );
-  const { 
-    data: totalSupply, 
-    error: totalSupplyError } =
-    useTokenBalance(
-      rewardsToken, 
-      "0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
-      );
-console.log('total supply:',totalSupply.displayValue);
+  // const { 
+  //   data: totalSupply, 
+  //   error: totalSupplyError } =
+  //   useTokenBalance(
+  //     rewardsToken, 
+  //     "0x0777E4C556b76143349b81D86EAc8D36b7efB58E"
+  //     );
+// console.log('total supply:',totalSupply.displayValue);
       // if(unstakedTokenBalance) {
       //   setAmountToStake(unstakedTokenBalance);
       // }
