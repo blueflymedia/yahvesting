@@ -5,7 +5,7 @@ import { useCountdown } from './hooks/useCountdown';
 const ExpiredNotice = () => {
   return (
     <div className="expired-notice">
-      <span>⏰ LFG!!!</span>
+      <span>GAME TIME</span>
     </div>
   );
 };

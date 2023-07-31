@@ -11,7 +11,7 @@ const Date = () => {
 
 const getTimeRemaining = (e) => {
   // Set the date we're counting down to
-  const countDownDate = new Date("Aug 29, 2023 13:02:35").getTime();
+  const countDownDate = new Date("Aug 29, 2024 13:02:35").getTime();
   // Get today's date and time
   const now = new Date().getTime();
 

@@ -9,3 +9,11 @@ const APY= totalStaked*(supply allocated to the rewards/Total amount staked)* 10
 100000*(1088888888/1141455689)*100 = 34.08%
 
 7777777777*.14 = 1088888888.38
+
+totalStaked = 1163805203.044928809
+totalSupply = 2328659298.085836068
+
+const APY = totalStaked*(totalSupply/totalStaked)* 100 = 200%
+
+621 277 272 216
+87061848
